@@ -10,13 +10,13 @@
 <body>
   <div class="container">
     <script type="text/x-handlebars" data-template-name = "teams" >
-      <h2>Welcome to the Official Blazars Sights</h2>
       <div class="row">
         <div class="col-md-4 teams">
+          <h2>Welcome to the Official Blazars Sights</h2>
         <ul>
          {{#each}}
             {{#if defined }}
-              <li>{{name}}</li>
+              <li>{{#link-to 'team' this}}{{name}}{{/link-to}}</li>
             {{/if}}
           {{/each}}
 
@@ -27,18 +27,23 @@
 
         </div>
          <div class="col-md-4 players">
-          <p>{{render 'player'}}</p>
+          <p>{{outlet}}</p>
         </div>
          <div class="col-md-4 shot_attempts">
         </div>
       </div>
-      {{outlet}}
+
     </script>
 
-    <script type="text/x-handlebars" data-template-name="player">
-      {{#each}}
-        <li>{{name}}</li>
+
+
+    <script type="text/x-handlebars" data-template-name="team">
+
+      <h1>{{#link-to 'teams'}}{{name}}{{/link-to}}</h1>
+      {{#each player in model.players}}
+        <li>{{player.name}}</li>
       {{/each}}
+      {{#link-to 'new_player' class="btn btn-info"}}Add Player{{/link-to}}
     </script>
 
     <script type="text/x-handlebars" data-template-name="new_team">
@@ -53,6 +58,19 @@
       </form>
 
      </script>
+
+     <script type="text/x-handlebars" data-template-name="new_player">
+
+       <form>
+
+         <div class="form-group">
+           {{input type="text" id="name" placeholder= 'Name' value=newName}}
+         </div>
+
+         <button {{action createPlayer}} class="btn btn-info">Go!</button>
+       </form>
+
+      </script>
 
 
 </div>

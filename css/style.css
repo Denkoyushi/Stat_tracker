@@ -6,3 +6,12 @@
 a {
   color: white;
 }
+
+a:hover {
+  color:#00FF00;
+}
+
+.btn {
+  margin-top: 25px;
+  border-radius: 5px;
+}
