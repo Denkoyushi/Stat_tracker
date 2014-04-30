@@ -26,13 +26,9 @@
         {{#link-to 'new_team' class="btn btn-info"}}Add Team{{/link-to}}
 
         </div>
-         <div class="col-md-4 players">
-          <p>{{outlet}}</p>
-        </div>
-         <div class="col-md-4 shot_attempts">
-        </div>
-      </div>
 
+      </div>
+  <p>{{outlet}}</p>
     </script>
 
 
@@ -41,10 +37,19 @@
 
       <h1>{{#link-to 'teams'}}{{name}}{{/link-to}}</h1>
       {{#each player in model.players}}
-        <li>{{player.name}}</li>
+        <li>{{#link-to 'player' player.id}}{{player.name}}{{/link-to}}</li>
       {{/each}}
       {{#link-to 'new_player' class="btn btn-info"}}Add Player{{/link-to}}
       {{outlet}}
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="player">
+      <h1>{{name}}</h1>
+      {{#each attempt in model.attempts}}
+        <li>Attempt success: {{attempt.scored}}</li>
+      {{/each}}
+      <button {{action swishShot this}} class="btn btn-success">Swish!</button>
+      <button {{action missShot this}} class="btn btn-danger">Fail!</button>
     </script>
 
     <script type="text/x-handlebars" data-template-name="new_team">
@@ -83,7 +88,7 @@
   <script src="js/app.js"></script>
   <script src="js/router.js"></script>
   <script src="js/models/player.js"></script>
-  <!--<script src="js/models/shot_attempt.js"></script> -->
+  <script src="js/models/attempt.js"></script>
   <script src="js/models/team.js"></script>
   <!-- to activate the test runner, add the "?test" query string parameter -->
   <script src="tests/runner.js"></script>

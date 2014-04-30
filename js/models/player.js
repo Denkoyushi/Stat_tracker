@@ -1,17 +1,20 @@
 Statkeeper.Player = DS.Model.extend({
   name: DS.attr(),
-  team: DS.belongsTo('team', {async: true})
+  team: DS.belongsTo('team', {async: true}),
+  attempts: DS.hasMany('attempt', {async: true })
 });
 
 
 Statkeeper.Player.FIXTURES = [
   {
     id: 1,
-    name: "Michael Jordan"
+    name: "Michael Jordan",
+    attempts: [1,2]
   },
   {
     id: 2,
-    name: "Orca Drone"
+    name: "Orca Drone",
+    attempts: [1,2]
   },
   {
     id: 3,
