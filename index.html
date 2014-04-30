@@ -44,6 +44,7 @@
         <li>{{player.name}}</li>
       {{/each}}
       {{#link-to 'new_player' class="btn btn-info"}}Add Player{{/link-to}}
+      {{outlet}}
     </script>
 
     <script type="text/x-handlebars" data-template-name="new_team">
@@ -61,10 +62,11 @@
 
      <script type="text/x-handlebars" data-template-name="new_player">
 
+
        <form>
 
          <div class="form-group">
-           {{input type="text" id="name" placeholder= 'Name' value=newName}}
+           {{input type="text" id="name" placeholder = 'Name' value=newName}}
          </div>
 
          <button {{action createPlayer}} class="btn btn-info">Go!</button>

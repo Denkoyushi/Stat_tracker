@@ -4,7 +4,7 @@ Statkeeper.Router.map(function() {
     this.resource('shot_attempt')
   });
   this.resource('team', { path: '/team/:id' }, function(){
-    this.resource('new_player')
+    this.resource('new_player', { path: '/new_player' })
   });
 });
 
@@ -33,6 +33,7 @@ Statkeeper.NewTeamRoute = Ember.Route.extend({
 });
 
 Statkeeper.NewPlayerRoute = Ember.Route.extend({
+
   model: function() {
     return this.store.createRecord('player')
   }
@@ -62,6 +63,7 @@ Statkeeper.NewTeamController = Ember.ObjectController.extend ({
         name: newName,
         defined: true
       });
+
       this.set('newName', '')
 
       this.transitionToRoute('/', teams);
@@ -71,17 +73,27 @@ Statkeeper.NewTeamController = Ember.ObjectController.extend ({
 });
 
 Statkeeper.NewPlayerController = Ember.ObjectController.extend ({
+  needs: "team",
+  team: Ember.computed.alias("controllers.team"),
+
   actions: {
     createPlayer: function() {
-      var teams = this.store.find('player')
+
+      var team = this.get('team').get('model');
+
       var newName = this.get('newName')
-      var newTeam = this.store.createRecord('player', {
-        name: newName,
-        defined: true
+
+      var newPlayer = this.store.createRecord('player', {
+        name: newName
+
       });
+       team.get('players').pushObject(newPlayer)
+
+
+
       this.set('newName', '')
 
-      this.transitionToRoute('/', teams);
+      // this.transitionToRoute('team', team);
     }
   }
 
