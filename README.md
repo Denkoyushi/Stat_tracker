@@ -8,7 +8,7 @@
 creating a team
 
 
-*DONE When a player shoots the ball, the stats keeper needs to record who shot it and whether they made or missed the basket. For now, we'll treat all shots the same - don't worry about free throws or 3-pointers. Hint: Make a ShotAttempt model.
+* DONE When a player shoots the ball, the stats keeper needs to record who shot it and whether they made or missed the basket. For now, we'll treat all shots the same - don't worry about free throws or 3-pointers. Hint: Make a ShotAttempt model.
 adding shot attempts
 
 For each player, display the total number of shots they attempted. Hint: Add a computed property to your Player model.
